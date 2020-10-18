@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ComparisonTest.Models;
+using Microsoft.Extensions.Logging;
 
 namespace ComparisonTest.Services
 {
@@ -14,10 +15,12 @@ namespace ComparisonTest.Services
     /// </summary>
     public class MessageRepository : IRepository<MessageEntity>
     {
+        private readonly ILogger<MessageRepository> _logger;
         private readonly List<MessageEntity> _messages;
 
-        public MessageRepository()
+        public MessageRepository(ILogger<MessageRepository> logger)
         {
+            _logger = logger;
             _messages = new List<MessageEntity>();
         }
 
